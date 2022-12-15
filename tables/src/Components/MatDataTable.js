@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from 'axios'; // npm instal axios
+import axios from 'axios';
 import { forwardRef } from 'react';
 import MaterialTable from "material-table";
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
@@ -10,7 +10,8 @@ import FilterList from '@material-ui/icons/FilterList';
 import FirstPage from '@material-ui/icons/FirstPage';
 import LastPage from '@material-ui/icons/LastPage';
 import Search from '@material-ui/icons/Search';
-import DetailTable from './DetailTable';
+import ViewColumn from '@material-ui/icons/ViewColumn';
+// import DetailTable from './DetailTable';
 
 const tableIcons = {
   DetailPanel: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
@@ -22,6 +23,7 @@ const tableIcons = {
   ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
   Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
   SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
+  ViewColumn: forwardRef((props,ref)=> <ViewColumn {...props} ref={ref} />),
 };
 
 export default class MatDataTable extends Component {
@@ -31,8 +33,6 @@ export default class MatDataTable extends Component {
   }
     
   componentDidMount(prevProps) {    
-    // const maxResults = 20;    
-    // const url = `https://randomuser.me/api/?results=${maxResults}`;
     const url = `http://go-dev.greedygame.com/v3/dummy/report?startDate=2021-05-01&endDate=2021-05-03`;
 
     axios.get(url)
@@ -68,12 +68,8 @@ export default class MatDataTable extends Component {
         <MaterialTable
           icons={tableIcons}
           options={{
-            grouping: true
-          }}
-          detailPanel={rowData => {
-            return (              
-              <DetailTable />
-            )
+            // grouping: true
+            columnsButton:true
           }}
           columns={[
             {title:"Date", field:"date"},
@@ -82,11 +78,12 @@ export default class MatDataTable extends Component {
             {title:"Response", field:"responses"},
             {title:"Impressions", field:"impressions"},
             {title:"Clicks", field:"clicks"},
-            {title:"Revenue", field:"revenue"},                               
+            {title:"Revenue", field:"revenue"},
+                                           
           ]}
           data={this.state.tableArray}      
         
-          title="Demo Title"
+          title="Greedy Game Analysis"
         />
       </div>
     );
