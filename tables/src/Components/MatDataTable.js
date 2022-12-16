@@ -11,6 +11,8 @@ import FirstPage from '@material-ui/icons/FirstPage';
 import LastPage from '@material-ui/icons/LastPage';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import moment from 'moment';
+
 // import DetailTable from './DetailTable';
 
 const tableIcons = {
@@ -41,7 +43,8 @@ export default class MatDataTable extends Component {
       console.log(data.data.data);
       this.setState({ person: data.data.data });
 
-      var newArr = data.data.data.map(function(val) {          
+      var newArr = data.data.data.map(function(val) {
+        // val.date=val.date.moment().format('MMMM Do YYYY, h:mm:ss a');   
         return {
         date: val.date,
         app_id: val.app_id,
@@ -50,6 +53,8 @@ export default class MatDataTable extends Component {
         impressions: val.impressions,          
         clicks: val.clicks,          
         revenue: val.revenue,
+        fill: val.requests/val.responses*100,
+        ctr: val.clicks/val.impressions*100,
         };
       });
       console.log(data.data.data); 
@@ -64,7 +69,7 @@ export default class MatDataTable extends Component {
 
   render() {
     return (      
-      <div style={{ maxWidth: "50%", marginLeft: "300px", marginTop: "100px" }}>
+      <div style={{ maxWidth: "75%", margin: "auto", marginBottom: "auto", }}>
         <MaterialTable
           icons={tableIcons}
           options={{
@@ -79,6 +84,8 @@ export default class MatDataTable extends Component {
             {title:"Impressions", field:"impressions"},
             {title:"Clicks", field:"clicks"},
             {title:"Revenue", field:"revenue"},
+            {title:"Fill Rate", field:"fill"},
+            {title:"CTR", field:"ctr"},
                                            
           ]}
           data={this.state.tableArray}      
