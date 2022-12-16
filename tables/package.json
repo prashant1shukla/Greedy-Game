@@ -2,7 +2,7 @@
   "name": "tables",
   "version": "0.1.0",
   "private": true,
-  "homepage":"https://prashant1shukla.github.io/Greedy-Game",
+  "homepage": "https://prashant1shukla.github.io/Greedy-Game",
   "dependencies": {
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.1",
     "date-fns-jalali": "^2.29.3-0",
+    "gh-pages": "^4.0.0",
     "github-pages": "^3.0.2",
     "material-table": "^1.69.3",
     "moment": "^2.29.4",
